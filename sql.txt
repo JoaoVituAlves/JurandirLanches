@@ -1,0 +1,63 @@
+CREATE TABLE `tb_usuarioshamb` (
+  `usu_id` int NOT NULL AUTO_INCREMENT,
+  `usu_nome` varchar(200) DEFAULT NULL,
+  `usu_email` varchar(100) DEFAULT NULL,
+  `usu_ativo` char(1) DEFAULT NULL,
+  `perfil_id` int DEFAULT NULL,
+  `usu_datacadastro` datetime DEFAULT NULL,
+  `usu_senha` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`usu_id`),
+  KEY `fk_usu_perfil` (`perfil_id`),
+  CONSTRAINT `tb_usuarios_ibfk_1` FOREIGN KEY (`perfil_id`) REFERENCES `tb_perfilhamb` (`perfil_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `tb_queijo` (
+  `que_id` int NOT NULL AUTO_INCREMENT,
+  `que_descricao` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`que_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `tb_perfilhamb` (
+  `perfil_id` int NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`perfil_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `tb_pedido` (
+  `ped_id` int NOT NULL AUTO_INCREMENT,
+  `ped_nome` varchar(100) DEFAULT NULL,
+  `ped_data` datetime DEFAULT NULL,
+  `pao_id` int DEFAULT NULL,
+  `que_id` int DEFAULT NULL,
+  `ham_id` int DEFAULT NULL,
+  `aco_id` int DEFAULT NULL,
+  PRIMARY KEY (`ped_id`),
+  KEY `pao_id` (`pao_id`),
+  KEY `que_id` (`que_id`),
+  KEY `ham_id` (`ham_id`),
+  KEY `aco_id` (`aco_id`),
+  CONSTRAINT `tb_pedido_ibfk_1` FOREIGN KEY (`pao_id`) REFERENCES `tb_pao` (`pao_id`),
+  CONSTRAINT `tb_pedido_ibfk_2` FOREIGN KEY (`que_id`) REFERENCES `tb_queijo` (`que_id`),
+  CONSTRAINT `tb_pedido_ibfk_3` FOREIGN KEY (`ham_id`) REFERENCES `tb_hamburguer` (`ham_id`),
+  CONSTRAINT `tb_pedido_ibfk_4` FOREIGN KEY (`aco_id`) REFERENCES `tb_acompanhamento` (`aco_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `tb_pao` (
+  `pao_id` int NOT NULL AUTO_INCREMENT,
+  `pao_descricao` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`pao_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `tb_hamburguer` (
+  `ham_id` int NOT NULL AUTO_INCREMENT,
+  `ham_descricao` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ham_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `tb_acompanhamento` (
+  `aco_id` int NOT NULL AUTO_INCREMENT,
+  `aco_descricao` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`aco_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

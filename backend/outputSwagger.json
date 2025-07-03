@@ -1,0 +1,1193 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PFS 2 - API",
+    "description": "API da disciplina de PFS 2",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/"
+    }
+  ],
+  "paths": {
+    "/usuario/obter/{id}": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Obter um usuário pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do usuário"
+          },
+          {
+            "name": "chaveapi",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/usuario/listar": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Listar todos os usuários",
+        "parameters": [
+          {
+            "name": "chaveapi",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/usuario/criar": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Criar um novo usuário",
+        "parameters": [
+          {
+            "name": "chaveapi",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/usuario"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/alterar": {
+      "put": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Alterar os dados de um usuário existente",
+        "parameters": [
+          {
+            "name": "chaveapi",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/usuario"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuario/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Excluir um usuário pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do usuário a ser excluído"
+          },
+          {
+            "name": "chaveapi",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/perfil/listar": {
+      "get": {
+        "tags": [
+          "Perfil"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "chaveapi",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": [
+              "PFSII"
+            ]
+          }
+        ]
+      }
+    },
+    "/login/autenticar": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pedido/cadastrar": {
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  },
+                  "pao": {
+                    "example": "any"
+                  },
+                  "queijo": {
+                    "example": "any"
+                  },
+                  "hamburguer": {
+                    "example": "any"
+                  },
+                  "acompanhamento": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pedido/alterar": {
+      "put": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "example": "any"
+                  },
+                  "nome": {
+                    "example": "any"
+                  },
+                  "data": {
+                    "example": "any"
+                  },
+                  "pao": {
+                    "example": "any"
+                  },
+                  "queijo": {
+                    "example": "any"
+                  },
+                  "hamburguer": {
+                    "example": "any"
+                  },
+                  "acompanhamento": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pedido/excluir": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pedidoId": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pedido/listar": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pedido/obter/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/acompanhamento/listar": {
+      "get": {
+        "tags": [
+          "Acompanhamento"
+        ],
+        "summary": "Listar acompanhamentos",
+        "description": "Retorna todos os acompanhamentos cadastrados.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/acompanhamento/obter/{id}": {
+      "get": {
+        "tags": [
+          "Acompanhamento"
+        ],
+        "summary": "Obter acompanhamento por ID",
+        "description": "Retorna um acompanhamento pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do acompanhamento"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/acompanhamento/criar": {
+      "post": {
+        "tags": [
+          "Acompanhamento"
+        ],
+        "summary": "Criar novo acompanhamento",
+        "description": "Cria um novo acompanhamento com a descrição informada.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "descricao": {
+                    "type": "string",
+                    "example": "Batata frita"
+                  }
+                },
+                "required": [
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acompanhamento/alterar": {
+      "put": {
+        "tags": [
+          "Acompanhamento"
+        ],
+        "summary": "Alterar acompanhamento",
+        "description": "Atualiza a descrição de um acompanhamento existente.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "acompanhamentoId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "descricao": {
+                    "type": "string",
+                    "example": "Molho especial"
+                  }
+                },
+                "required": [
+                  "acompanhamentoId",
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acompanhamento/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Acompanhamento"
+        ],
+        "summary": "Excluir acompanhamento",
+        "description": "Exclui um acompanhamento pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do acompanhamento a ser excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hamburguer/listar": {
+      "get": {
+        "tags": [
+          "Hamburguer"
+        ],
+        "summary": "Listar hambúrgueres",
+        "description": "Retorna todos os hambúrgueres cadastrados.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hamburguer/obter/{id}": {
+      "get": {
+        "tags": [
+          "Hamburguer"
+        ],
+        "summary": "Obter hambúrguer por ID",
+        "description": "Retorna um hambúrguer pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do hambúrguer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/hamburguer/criar": {
+      "post": {
+        "tags": [
+          "Hamburguer"
+        ],
+        "summary": "Criar novo hambúrguer",
+        "description": "Cria um novo hambúrguer com a descrição informada.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "descricao": {
+                    "type": "string",
+                    "example": "Hambúrguer artesanal"
+                  }
+                },
+                "required": [
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hamburguer/alterar": {
+      "put": {
+        "tags": [
+          "Hamburguer"
+        ],
+        "summary": "Alterar hambúrguer",
+        "description": "Atualiza a descrição de um hambúrguer existente.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hamburguerId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "descricao": {
+                    "type": "string",
+                    "example": "Hambúrguer artesanal especial"
+                  }
+                },
+                "required": [
+                  "hamburguerId",
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hamburguer/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Hamburguer"
+        ],
+        "summary": "Excluir hambúrguer",
+        "description": "Exclui um hambúrguer pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do hambúrguer a ser excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pao/listar": {
+      "get": {
+        "tags": [
+          "Pao"
+        ],
+        "summary": "Listar pães",
+        "description": "Retorna todos os pães cadastrados.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pao/obter/{id}": {
+      "get": {
+        "tags": [
+          "Pao"
+        ],
+        "summary": "Obter pão por ID",
+        "description": "Retorna um pão pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do pão"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pao/criar": {
+      "post": {
+        "tags": [
+          "Pao"
+        ],
+        "summary": "Criar novo pão",
+        "description": "Cria um novo pão com a descrição informada.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "descricao": {
+                    "type": "string",
+                    "example": "Pão francês"
+                  }
+                },
+                "required": [
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pao/alterar": {
+      "put": {
+        "tags": [
+          "Pao"
+        ],
+        "summary": "Alterar pão",
+        "description": "Atualiza a descrição de um pão existente.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "paoId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "descricao": {
+                    "type": "string",
+                    "example": "Pão integral"
+                  }
+                },
+                "required": [
+                  "paoId",
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pao/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Pao"
+        ],
+        "summary": "Excluir pão",
+        "description": "Exclui um pão pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do pão a ser excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/queijo/listar": {
+      "get": {
+        "tags": [
+          "Queijo"
+        ],
+        "summary": "Listar queijos",
+        "description": "Retorna todos os queijos cadastrados.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/queijo/obter/{id}": {
+      "get": {
+        "tags": [
+          "Queijo"
+        ],
+        "summary": "Obter queijo por ID",
+        "description": "Retorna um queijo pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do queijo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/queijo/criar": {
+      "post": {
+        "tags": [
+          "Queijo"
+        ],
+        "summary": "Criar novo queijo",
+        "description": "Cria um novo queijo com a descrição informada.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "descricao": {
+                    "type": "string",
+                    "example": "Queijo cheddar"
+                  }
+                },
+                "required": [
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/queijo/alterar": {
+      "put": {
+        "tags": [
+          "Queijo"
+        ],
+        "summary": "Alterar queijo",
+        "description": "Atualiza a descrição de um queijo existente.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "queijoId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "descricao": {
+                    "type": "string",
+                    "example": "Queijo prato"
+                  }
+                },
+                "required": [
+                  "queijoId",
+                  "descricao"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/queijo/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Queijo"
+        ],
+        "summary": "Excluir queijo",
+        "description": "Exclui um queijo pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do queijo a ser excluído"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 999
+          },
+          "nome": {
+            "type": "string",
+            "example": "Usuário Teste"
+          },
+          "email": {
+            "type": "string",
+            "example": "teste@teste.com"
+          },
+          "ativo": {
+            "type": "string",
+            "example": "S"
+          },
+          "perfilId": {
+            "type": "number",
+            "example": 1
+          },
+          "dataCadastro": {
+            "type": "string",
+            "example": "2025-06-28T15:00:54.667Z"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123"
+          }
+        }
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "teste@teste.com"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "chaveapi",
+        "description": "Chave de autorização da nossa API"
+      }
+    }
+  }
+}
